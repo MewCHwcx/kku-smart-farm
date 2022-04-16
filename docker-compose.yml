@@ -1,0 +1,37 @@
+version: '3.9'
+services:
+  db:
+    image: mysql
+    container_name: db
+    volumes:
+      - container-volume:/var/lib/mysql
+      - ./mysql.sql:/docker-entrypoint-initdb.d/mysql.sql
+    restart: always
+    ports:
+      - "9906:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: 1q2w3e4r
+      MYSQL_HOSTNAME: localhost
+      MYSQL_DATABASE: special_topic
+      TZ: Asia/Bangkok
+    networks: 
+      - backend
+
+  backend_api:
+    build: ./kku-smart-farm-backend
+    container_name: backend_api
+    volumes:
+      - .:/usr/src/app/
+    ports:
+      - "9000:9000"
+    restart: on-failure
+    networks: 
+      - backend
+
+networks:
+  frontend:
+  backend:
+volumes:
+  container-volume:
+
+
