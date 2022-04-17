@@ -15,11 +15,11 @@ if(process.env.NODE_ENV == 'production'){
 }
 // create the connection to database
 const connection = mysql.createPool({
-  host: host,
+  host: 'db',
   user: 'root',
   password: '1q2w3e4r',
   database: 'special_topic',
-  port : 9906
+  port : 3306
 });
 
 app.get('/', function (req, res, next) {
