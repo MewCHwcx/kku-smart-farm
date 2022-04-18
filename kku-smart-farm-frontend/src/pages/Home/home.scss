@@ -2,12 +2,15 @@
   height: 100vh;
   background-color: #fff;
 
+  &__paddings {
+    margin: 0px 20px 20px 20px;
+  }
+
   &__grid-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 2rem;
     padding: 10px;
-    padding-top: 25%;
   }
 
   &__box {

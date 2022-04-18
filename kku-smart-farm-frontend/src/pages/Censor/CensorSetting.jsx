@@ -1,21 +1,6 @@
 import "./censor.scss";
 import { useNavigate, useLocation } from "react-router-dom";
 
-const censorSettingItems = [
-  {
-    index: 1,
-    name: "อุณหภูมิ (เซสเซียส)",
-  },
-  {
-    index: 2,
-    name: "ความชื้น (เปอร์เซ็นต์)",
-  },
-  {
-    index: 3,
-    name: "ความชื้นดิน (เปอร์เซ็นต์)",
-  },
-];
-
 const CensorSetting = (props) => {
   let navigate = useNavigate();
   const { state } = useLocation();
