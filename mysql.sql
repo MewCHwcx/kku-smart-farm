@@ -96,7 +96,7 @@ CREATE TABLE `module` (
 
 LOCK TABLES `module` WRITE;
 /*!40000 ALTER TABLE `module` DISABLE KEYS */;
-INSERT INTO `module` VALUES (1,30,50,60,'2022-03-14','13:14:00'),(2,50,60,70,'2022-03-14','13:15:00'),(21,35,52,50,'2022-04-17','00:48:31'),(22,35,52,50,'2022-04-17','00:49:11'),(23,38,52,50,'2022-04-17','00:52:38'),(24,38,52,50,'2022-04-17','00:52:40'),(25,40,52,50,'2022-04-17','00:55:52'),(26,45,52,50,'2022-04-17','00:56:18'),(27,46,52,50,'2022-04-17','00:57:19'),(28,46,52,50,'2022-04-17','01:00:45'),(29,48,52,50,'2022-04-17','01:01:01'),(30,48,52,50,'2022-04-17','01:01:21'),(31,50,52,50,'2022-04-17','01:01:50');
+INSERT INTO `module` VALUES (1,30,50,60,'2022-03-14','13:14:00'),(2,50,60,70,'2022-03-14','13:15:00'),(21,35,52,50,'2022-04-15','00:48:31'),(22,35,52,50,'2022-04-15','00:49:11'),(23,38,50,49,'2022-04-16','00:52:38'),(24,38,52,50,'2022-04-16','00:52:40'),(25,37,52,50,'2022-04-17','00:55:52'),(26,36,35,40,'2022-04-17','00:56:18'),(27,35,10,20,'2022-04-17','00:57:19'),(28,34,52,50,'2022-04-17','01:00:45'),(29,33,42,40,'2022-04-17','01:01:01'),(30,32,30,50,'2022-04-18','01:01:21'),(31,31,52,50,'2022-04-19','01:01:50');
 /*!40000 ALTER TABLE `module` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -269,6 +269,60 @@ INSERT INTO `status` VALUES (1,0),(2,1);
 UNLOCK TABLES;
 
 --
+-- Table structure for table `status_main`
+--
+
+DROP TABLE IF EXISTS `status_main`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `status_main` (
+  `id_main` int NOT NULL AUTO_INCREMENT,
+  `detail_main` varchar(6) NOT NULL,
+  PRIMARY KEY (`id_main`),
+  UNIQUE KEY `detail_main_UNIQUE` (`detail_main`),
+  UNIQUE KEY `id_main_UNIQUE` (`id_main`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `status_main`
+--
+
+LOCK TABLES `status_main` WRITE;
+/*!40000 ALTER TABLE `status_main` DISABLE KEYS */;
+INSERT INTO `status_main` VALUES (2,'false'),(1,'true');
+/*!40000 ALTER TABLE `status_main` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `status_now`
+--
+
+DROP TABLE IF EXISTS `status_now`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `status_now` (
+  `id_now` int NOT NULL AUTO_INCREMENT,
+  `id_main_now` int NOT NULL,
+  `detail_main_now` varchar(6) NOT NULL,
+  PRIMARY KEY (`id_now`),
+  UNIQUE KEY `id_now_UNIQUE` (`id_now`),
+  UNIQUE KEY `id_main_now_UNIQUE` (`id_main_now`),
+  CONSTRAINT `id_main_now` FOREIGN KEY (`id_main_now`) REFERENCES `status_main` (`id_main`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `status_now`
+--
+
+LOCK TABLES `status_now` WRITE;
+/*!40000 ALTER TABLE `status_now` DISABLE KEYS */;
+INSERT INTO `status_now` VALUES (1,2,'false');
+/*!40000 ALTER TABLE `status_now` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `wifi`
 --
 
@@ -293,6 +347,10 @@ LOCK TABLES `wifi` WRITE;
 INSERT INTO `wifi` VALUES (1,'aaaa','123456','10.02030.1');
 /*!40000 ALTER TABLE `wifi` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping events for database 'special_topic'
+--
 
 --
 -- Dumping routines for database 'special_topic'
@@ -329,4 +387,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-04-18 20:20:50
+-- Dump completed on 2022-04-19  0:28:27

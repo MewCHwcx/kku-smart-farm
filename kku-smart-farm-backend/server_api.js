@@ -174,7 +174,23 @@ app.put('/setrelay', function (req, res, next) {
         }
       );
    })
-
+app.get('/getcontrolrelay', function (req, res, next) {
+    connection.query(
+        'SELECT id_main_now,detail_main_now from status_now where id_now = 1',
+        function(err, results, fields) {
+            res.json(results); // results contains rows returned by server
+        }
+      );
+   })
+app.put('/setcontrolrelay', function (req, res, next) {
+    const {id_main_now} = req.body;
+    connection.query(
+          'UPDATE status_now SET id_main_now = ?, detail_main_now = (SELECT status_main.detail_main from status_main where status_main.id_main = id_main_now) WHERE id_now = 1;',[id_main_now],
+          function(err, results, fields) {
+            res.json(results);
+          }
+        );
+     })
 app.listen(9000, function () {
   console.log('CORS-enabled web server listening on port 9000')
 })
