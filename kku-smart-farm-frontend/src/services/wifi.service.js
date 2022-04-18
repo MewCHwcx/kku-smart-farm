@@ -1,5 +1,4 @@
 import { httpClient } from "../client";
-import WifiModel from "../models/wifiModel";
 
 const WifiService = {
   getWifi: () => {
