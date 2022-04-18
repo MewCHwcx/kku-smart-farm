@@ -171,7 +171,7 @@ CREATE TABLE `setting_hu` (
   KEY `id_status_hu_idx` (`id_status_hu`),
   CONSTRAINT `id_relay_hu` FOREIGN KEY (`id_relay_hu`) REFERENCES `relay` (`id_relay`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `id_status_hu` FOREIGN KEY (`id_status_hu`) REFERENCES `status` (`id_status`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -180,7 +180,7 @@ CREATE TABLE `setting_hu` (
 
 LOCK TABLES `setting_hu` WRITE;
 /*!40000 ALTER TABLE `setting_hu` DISABLE KEYS */;
-INSERT INTO `setting_hu` VALUES (1,60,1,2);
+INSERT INTO `setting_hu` VALUES (1,60,1,2),(2,4,2,1),(3,4,3,1),(4,4,4,1);
 /*!40000 ALTER TABLE `setting_hu` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -201,7 +201,7 @@ CREATE TABLE `setting_soil` (
   KEY `id_status_soil_idx` (`id_status_soil`),
   CONSTRAINT `id_relay_soil` FOREIGN KEY (`id_relay_soil`) REFERENCES `relay` (`id_relay`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `id_status_soil` FOREIGN KEY (`id_status_soil`) REFERENCES `status` (`id_status`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -210,6 +210,7 @@ CREATE TABLE `setting_soil` (
 
 LOCK TABLES `setting_soil` WRITE;
 /*!40000 ALTER TABLE `setting_soil` DISABLE KEYS */;
+INSERT INTO `setting_soil` VALUES (1,1,1,1),(2,1,2,1),(3,1,3,1),(4,1,4,1);
 /*!40000 ALTER TABLE `setting_soil` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -230,7 +231,7 @@ CREATE TABLE `setting_temp` (
   KEY `id_status_temp_idx` (`id_status_temp`),
   CONSTRAINT `id_relay_temp` FOREIGN KEY (`id_relay_temp`) REFERENCES `relay` (`id_relay`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `id_status_temp` FOREIGN KEY (`id_status_temp`) REFERENCES `status` (`id_status`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -239,6 +240,7 @@ CREATE TABLE `setting_temp` (
 
 LOCK TABLES `setting_temp` WRITE;
 /*!40000 ALTER TABLE `setting_temp` DISABLE KEYS */;
+INSERT INTO `setting_temp` VALUES (1,1,1,1),(2,1,2,1),(3,1,3,2),(4,1,4,2);
 /*!40000 ALTER TABLE `setting_temp` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -293,10 +295,6 @@ INSERT INTO `wifi` VALUES (1,'aaaa','123456','10.02030.1');
 UNLOCK TABLES;
 
 --
--- Dumping events for database 'special_topic'
---
-
---
 -- Dumping routines for database 'special_topic'
 --
 /*!50003 DROP PROCEDURE IF EXISTS `auto_add_all` */;
@@ -331,4 +329,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-04-17  1:21:50
+-- Dump completed on 2022-04-18 20:20:50

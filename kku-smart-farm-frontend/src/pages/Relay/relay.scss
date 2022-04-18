@@ -167,3 +167,16 @@ input:checked + .slider .on {
 input:checked + .slider .off {
   display: none;
 }
+
+input[type="time"] {
+  font-size: 20px;
+  width: 100%;
+  border: 5px solid #e4e4e4;
+  border-radius: 20px;
+  padding: 10px;
+}
+
+.select {
+  width: 100%;
+  border-radius: 30px;
+}

@@ -1,4 +1,5 @@
 import "./relay.scss";
+import Select from "react-select";
 import { useNavigate } from "react-router-dom";
 
 const RelaySetting = () => {
@@ -7,15 +8,27 @@ const RelaySetting = () => {
     navigate("/relay");
   };
 
+  const dayPicker = [
+    { label: "อาทิตย์", value: 1 },
+    { label: "จันทร์", value: 2 },
+    { label: "อังคาร", value: 3 },
+    { label: "พุธ", value: 4 },
+    { label: "พฤหัสบดี", value: 5 },
+    { label: "ศุกร์", value: 6 },
+    { label: "เสาร์", value: 7 },
+  ];
+
   return (
     <div className="relay__setting">
       <div className="relay__setting__grid">
-        <div className="relay__item__header">ตั้งค่า Wifi</div>
+        <div className="relay__item__header">ตั้งค่ารีเลย์</div>
         <div className="relay__setting__box">
           <div className="relay__item__body">วัน</div>
-          <input type="text" id="day" name="name"></input>
+          <div className="select">
+            <Select options={dayPicker} />
+          </div>
           <div className="relay__item__body">เริ่มทำงาน</div>
-          <input type="text" id="time" name="password"></input>
+          <input type="time" step="1"></input>
           <div className="relay__item__body">ทำงาน (นาที)</div>
           <input type="text" id="minute" name="name"></input>
           <div className="relay__setting__grid">
