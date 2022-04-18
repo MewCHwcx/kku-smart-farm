@@ -31,6 +31,7 @@ const Relay = () => {
     if (toggle === false) {
       setDisable(true);
       navigate("/relay-setting");
+      console.log(toggle);
     } else {
       setDisable(false);
     }
