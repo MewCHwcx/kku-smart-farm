@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import RelayService from "../../services/relay.service";
 
 const Relay = () => {
-  const [toggle, setToggle] = useState(false);
+  const [toggle, setToggle] = useState();
   const [disable, setDisable] = useState(false);
 
   const [manualItem, setManualItem] = useState([]);
