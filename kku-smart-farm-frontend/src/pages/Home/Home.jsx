@@ -29,6 +29,11 @@ export const options = {
   plugins: {
     legend: {
       position: "top",
+      labels: {
+        font: {
+          family: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+        },
+      },
     },
     title: {
       display: true,

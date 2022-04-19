@@ -10,7 +10,6 @@ const Wifi = () => {
 
   const onSubmit = () => {
     WifiService.updateWifi(name, password, boardNo);
-    console.log({ name, password, boardNo });
   };
 
   useEffect(() => {
@@ -24,8 +23,6 @@ const Wifi = () => {
     setPassword(items[0]?.password_wifi);
     setBoardNo(items[0]?.num_board);
   }, [items]);
-
-  console.log({ items });
 
   return (
     <div className="wifi">

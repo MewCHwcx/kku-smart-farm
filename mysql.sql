@@ -318,7 +318,7 @@ CREATE TABLE `status_now` (
 
 LOCK TABLES `status_now` WRITE;
 /*!40000 ALTER TABLE `status_now` DISABLE KEYS */;
-INSERT INTO `status_now` VALUES (1,2,'false');
+INSERT INTO `status_now` VALUES (1,1,'true');
 /*!40000 ALTER TABLE `status_now` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -387,4 +387,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-04-19  0:28:27
+-- Dump completed on 2022-04-19  1:28:09

@@ -1,22 +1,59 @@
 import "./relay.scss";
 import Select from "react-select";
 import { useNavigate } from "react-router-dom";
+import RelayService from "../../services/relay.service";
+import { useEffect, useState } from "react";
+
+const relaySettingItems = [
+  {
+    index: 1,
+    id: "one",
+  },
+  {
+    index: 2,
+    id: "two",
+  },
+  {
+    index: 3,
+    id: "three",
+  },
+  {
+    index: 4,
+    id: "four",
+  },
+];
 
 const RelaySetting = () => {
+  const [date, setDate] = useState(null);
+  const [time, setTime] = useState("");
+  const [wrkTime, setWrkTime] = useState("");
+
   let navigate = useNavigate();
-  const goBack = () => {
+
+  const onSubmit = () => {
+    RelayService.updateAutoRelay(date, time, wrkTime);
+    RelayService.putControlRelay(1);
     navigate("/relay");
   };
 
   const dayPicker = [
-    { label: "อาทิตย์", value: 1 },
-    { label: "จันทร์", value: 2 },
-    { label: "อังคาร", value: 3 },
-    { label: "พุธ", value: 4 },
-    { label: "พฤหัสบดี", value: 5 },
-    { label: "ศุกร์", value: 6 },
-    { label: "เสาร์", value: 7 },
+    { label: "อาทิตย์", value: "อาทิตย์" },
+    { label: "จันทร์", value: "จันทร์" },
+    { label: "อังคาร", value: "อังคาร" },
+    { label: "พุธ", value: "พุธ" },
+    { label: "พฤหัสบดี", value: "พฤหัสบดี" },
+    { label: "ศุกร์", value: "ศุกร์" },
+    { label: "เสาร์", value: "เสาร์" },
   ];
+
+  const handleCheckmark = (item, id) => {
+    let status = item.target.checked;
+    if (status) {
+      RelayService.putSetRelay(id, 2, 1);
+    } else {
+      RelayService.putSetRelay(id, 1, 0);
+    }
+  };
 
   return (
     <div className="relay__setting">
@@ -25,32 +62,41 @@ const RelaySetting = () => {
         <div className="relay__setting__box">
           <div className="relay__item__body">วัน</div>
           <div className="select">
-            <Select options={dayPicker} />
+            <Select
+              onChange={(date) => setDate(date.value)}
+              options={dayPicker}
+            />
           </div>
           <div className="relay__item__body">เริ่มทำงาน</div>
-          <input type="time" step="1"></input>
+          <input
+            type="time"
+            step="1"
+            onChange={(time) => setTime(time.target.value)}
+          ></input>
           <div className="relay__item__body">ทำงาน (นาที)</div>
-          <input type="text" id="minute" name="name"></input>
+          <input
+            type="text"
+            id="minute"
+            name="minute"
+            onChange={(wrkTime) => setWrkTime(wrkTime.target.value)}
+          ></input>
           <div className="relay__setting__grid">
-            <label className="container">
-              รีเลย์ 1<input type="checkbox"></input>
-              <span className="checkmark"></span>
-            </label>
-            <label className="container">
-              รีเลย์ 2<input type="checkbox"></input>
-              <span className="checkmark"></span>
-            </label>
-            <label className="container">
-              รีเลย์ 3<input type="checkbox"></input>
-              <span className="checkmark"></span>
-            </label>
-            <label className="container">
-              รีเลย์ 4<input type="checkbox"></input>
-              <span className="checkmark"></span>
-            </label>
+            {relaySettingItems.map((item, index) => (
+              <>
+                <label className="container">
+                  รีเลย์ {item.index}
+                  <input
+                    type="checkbox"
+                    id={index}
+                    onClick={(e) => handleCheckmark(e, item.index)}
+                  ></input>
+                  <span className="checkmark"></span>
+                </label>
+              </>
+            ))}
           </div>
         </div>
-        <button className="censor__button" onClick={goBack}>
+        <button className="censor__button" onClick={onSubmit}>
           บันทึกการตั้งค่า
         </button>
       </div>

@@ -1,41 +1,48 @@
 import "./relay.scss";
-import { useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-
-const relayItems = [
-  {
-    index: 1,
-    id: "one",
-  },
-  {
-    index: 2,
-    id: "two",
-  },
-  {
-    index: 3,
-    id: "three",
-  },
-  {
-    index: 4,
-    id: "four",
-  },
-];
+import RelayService from "../../services/relay.service";
 
 const Relay = () => {
-  const [toggle, setToggle] = useState(true);
+  const [toggle, setToggle] = useState(false);
   const [disable, setDisable] = useState(false);
+
+  const [manualItem, setManualItem] = useState([]);
+
   let navigate = useNavigate();
 
   const triggerToggle = () => {
+    console.log("toggle => " + toggle);
     setToggle(!toggle);
     if (toggle === false) {
       setDisable(true);
       navigate("/relay-setting");
-      console.log(toggle);
     } else {
       setDisable(false);
     }
   };
+
+  const handleClick = (item, id) => {
+    let status = item.target.checked;
+    if (status === true) {
+      RelayService.putManualRelay(id, 2);
+    } else if (status === false) {
+      RelayService.putManualRelay(id, 1);
+    }
+  };
+
+  useEffect(() => {
+    RelayService.getControlRelay().then((control) => {
+      if (control.data[0].detail_main_now === "true") {
+        setToggle(true);
+        RelayService.getManualRelay().then((relay) => {
+          setManualItem(relay.data);
+        });
+      } else {
+        setToggle(false);
+      }
+    });
+  }, []);
 
   return (
     <div className="relay">
@@ -48,21 +55,24 @@ const Relay = () => {
               <input
                 type="checkbox"
                 id="auto_manual"
-                onClick={triggerToggle}
+                onChange={triggerToggle}
+                defaultChecked={toggle}
               ></input>
               <span className="slider round"></span>
             </label>
             <div> Manual</div>
           </div>
-          {relayItems.map((item, index) => (
+          {manualItem.map((item, index) => (
             <div className="relay__box">
               <div className="relay__flex">
-                <div className="relay__body">รีเลย์ {item.index}</div>
+                <div className="relay__body">รีเลย์ {item.id_relay_select}</div>
                 <label className="switch">
                   <input
                     type="checkbox"
-                    id={item.id}
+                    id={item.id_relay_select}
                     disabled={disable}
+                    onClick={(e) => handleClick(e, item.id_relay_select)}
+                    defaultChecked={item.detail_status}
                   ></input>
                   <span className="slider round">
                     <span className="on">ON</span>
